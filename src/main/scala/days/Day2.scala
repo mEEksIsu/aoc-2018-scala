@@ -25,25 +25,20 @@ class Day2 extends Day[Seq[String], Int, Option[String]] {
     None
   }
 
+  // Parse a string and return a character map indicating the occurrence count of each character in the string.
   def getCharacterCounts(id: String): Map[Char, Int] = {
     id.toCharArray
       .groupBy(identity)
       .mapValues(_.length)
       .toMap
-    //    var charCounts: Map[Char, Int] = Map.empty
-    //
-    //    for (char <- id.toCharArray) {
-    //      val count = charCounts.getOrElse(char, 0) + 1
-    //      charCounts += (char -> count)
-    //    }
-    //
-    //    charCounts
   }
 
+  // Calculate the hamming distance between two strings.
   def hammingDistance(s1: String, s2: String): Int = {
     s1 zip s2 map tupled { (c1, c2) => c1 == c2 } count(_ == false)
   }
 
+  // Return a string containing only the common characters between two strings.
   def commonCharacters(s1: String, s2: String): String = {
     s1 zip s2 filter tupled { (c1, c2) => c1 == c2 } map tupled { (c1, _) => c1 } mkString
   }
